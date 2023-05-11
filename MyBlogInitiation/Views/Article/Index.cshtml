@@ -1,7 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model ArticlesViewModel
+
 <h1>Liste des articles</h1>
 <p>TODO : mettre la liste des articles</p>
+
+<table class="table">
+	@foreach(var article in Model.Articles)
+	{
+		if (article.Available)
+		{
+			<tr>
+				<td>@article.Id</td>
+				<td>@article.Title</td>
+				<td>@article.Content</td>
+			</tr>
+		} else
+		{
+			<tr class="bg-secondary text-light">
+				<td>@article.Id</td>
+				<td colspan="2" class="text-center"> Article indisponible</td>
+			</tr>
+		}
+
+	}
+</table>
