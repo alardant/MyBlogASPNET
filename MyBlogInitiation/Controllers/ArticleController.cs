@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyBlogInitiation.Mocks;
 using MyBlogInitiation.Models;
+using MyBlogInitiation.ViewModels;
 
 namespace MyBlogInitiation.Controllers
 {
@@ -10,27 +12,8 @@ namespace MyBlogInitiation.Controllers
             //Créer uen liste d'article en DUR
             var vm = new ArticlesViewModel
             {
-                Articles = new List<ArticleModel>
-                {
-                    new ArticleModel
-                    {
-                        Id = 0,
-                        Title = "Les objets connectés 1",
-                        Content = "Exemple de contenu",
-                    },
-                    new ArticleModel
-                    {
-                        Id = 1,
-                        Title = "Les objets connectés 2",
-                        Content = "Exemple de contenu",
-                    },
-                    new ArticleModel
-                    {
-                        Id = 3,
-                        Title = "Les objets connectés 3",
-                        Content = "Exemple de contenu",
-                    }
-                }
+                Articles = ArticleMock.listArticles
+
             };
             return View(vm);
         }
