@@ -1,25 +1,21 @@
 ﻿@model ArticlesViewModel
 
 <h1>Liste des articles</h1>
-<p>TODO : mettre la liste des articles</p>
 
-<table class="table">
+<div class="allArticles">
 	@foreach(var article in Model.Articles)
 	{
 		if (article.Available)
 		{
-			<tr>
-				<td>@article.Id</td>
-				<td>@article.Title</td>
-				<td>@article.Content</td>
-			</tr>
-		} else
-		{
-			<tr class="bg-secondary text-light">
-				<td>@article.Id</td>
-				<td colspan="2" class="text-center"> Article indisponible</td>
-			</tr>
-		}
+			<div class="card" style="width: 18rem;">
+  @*<img class="card-img-top" src="..." alt="Card image cap">*@
+  <div class="card-body">
+    <h5 class="card-title">@article.Title</h5>
+    @*<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>*@
+    <a href="#" class="btn btn-primary">Lire plus </a>
+  </div>
+</div>
+		} 
 
 	}
-</table>
+</div>

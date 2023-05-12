@@ -15,6 +15,7 @@ namespace MyBlogInitiation.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 

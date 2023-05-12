@@ -16,3 +16,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.allArticles {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.allArticles .card {
+    margin: 10px;
+}
