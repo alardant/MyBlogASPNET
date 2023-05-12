@@ -1,4 +1,4 @@
-﻿@model ArticlesViewModel
+﻿@model MyBlogInitiation.ViewModels.ArticlesViewModel
 
 <h1>Liste des articles</h1>
 
@@ -12,7 +12,7 @@
   <div class="card-body">
     <h5 class="card-title">@article.Title</h5>
     @*<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>*@
-    <a href="#" class="btn btn-primary">Lire plus </a>
+    <a asp-controller="Articles" asp-action="Details" asp-route-id="@article.Id" class="btn btn-primary">Lire plus </a>
   </div>
 </div>
 		} 

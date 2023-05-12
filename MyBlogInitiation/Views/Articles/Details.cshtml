@@ -1,0 +1,9 @@
+﻿@model ArticleModel
+
+@if (Model.Available) 
+{
+	<h1>@Model.Title</h1>
+	@Html.Raw(Model.Content)
+} else {
+	<p class="text-danger">Impossible d'afficher cet article</p>
+}

@@ -8,16 +8,16 @@ using Microsoft.EntityFrameworkCore;
 using MyBlogInitiation.Data;
 using MyBlogInitiation.Models;
 using MyBlogInitiation.Repository.Context;
+using MyBlogInitiation.Repository.DAL;
 
 namespace MyBlogInitiation.Controllers
 {
     public class ArticlesEFController : Controller
     {
-        private readonly DbBlogContext _context;
-
-        public ArticlesEFController(DbBlogContext context)
+        private readonly ArticlesPublicDAL _articlesPublicRepository
+		public ArticlesEFController(ArticlesPublicDAL ArticlesPublicRepository)
         {
-            _context = context;
+			_articlesPublicRepository = ArticlesPublicRepository
         }
 
         // GET: ArticlesEF
