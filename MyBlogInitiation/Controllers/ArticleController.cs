@@ -5,7 +5,7 @@ using MyBlogInitiation.ViewModels;
 
 namespace MyBlogInitiation.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticlesController : Controller
     {
         public IActionResult Index()
         {

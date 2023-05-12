@@ -5,9 +5,11 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBlogInitiation", "MyBlogInitiation\MyBlogInitiation.csproj", "{894A03BF-DAE8-450E-AED2-17160E073D05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogInitiation.Models", "MyBlogInitiation.Models\MyBlogInitiation.Models.csproj", "{52D0C2A6-3DA4-4213-9DBC-4E1981318E73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBlogInitiation.Models", "MyBlogInitiation.Models\MyBlogInitiation.Models.csproj", "{52D0C2A6-3DA4-4213-9DBC-4E1981318E73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogInitiation.Mocks", "MyBlogInitiation.Mocks\MyBlogInitiation.Mocks.csproj", "{58F5417F-FB63-4F06-8FFB-97114EC127CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBlogInitiation.Mocks", "MyBlogInitiation.Mocks\MyBlogInitiation.Mocks.csproj", "{58F5417F-FB63-4F06-8FFB-97114EC127CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlogInitiation.Repository", "MyBlogInitiation.Repository\MyBlogInitiation.Repository.csproj", "{A7D2CA0C-4E17-4882-8ACB-5AB5F6AC3C63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{58F5417F-FB63-4F06-8FFB-97114EC127CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58F5417F-FB63-4F06-8FFB-97114EC127CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58F5417F-FB63-4F06-8FFB-97114EC127CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7D2CA0C-4E17-4882-8ACB-5AB5F6AC3C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7D2CA0C-4E17-4882-8ACB-5AB5F6AC3C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7D2CA0C-4E17-4882-8ACB-5AB5F6AC3C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7D2CA0C-4E17-4882-8ACB-5AB5F6AC3C63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
