@@ -1,10 +1,14 @@
-global using MyBlogInitiation.ViewModels;
+﻿global using MyBlogInitiation.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using MyBlogInitiation.Repository.Context;
+using Microsoft.Extensions.DependencyInjection;
+using MyBlogInitiation.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MyBlogInitiationContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyBlogInitiationContext") ?? throw new InvalidOperationException("Connection string 'MyBlogInitiationContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
