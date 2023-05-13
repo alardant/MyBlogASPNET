@@ -17,6 +17,14 @@ body {
   margin-bottom: 60px;
 }
 
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
 .allArticles {
     display: flex;
     flex-direction: row;
@@ -27,3 +35,4 @@ body {
 .allArticles .card {
     margin: 10px;
 }
+
