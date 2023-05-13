@@ -1,4 +1,4 @@
-﻿global using MyBlogInitiation.ViewModels;
+global using MyBlogInitiation.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -6,10 +6,10 @@ using MyBlogInitiation.Repository.Context;
 using Microsoft.Extensions.DependencyInjection;
 using MyBlogInitiation.Data;
 using MyBlogInitiation.Repository.DAL;
+using Microsoft.AspNetCore.Identity;
+using MyBlogInitiation.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<MyBlogInitiationContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MyBlogInitiationContext") ?? throw new InvalidOperationException("Connection string 'MyBlogInitiationContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -18,8 +18,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DbBlogContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDbContext")));
 
+builder.Services.AddDefaultIdentity<UserModel>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<DbBlogContext>();
+
 builder.Services.AddTransient<ArticlesPublicDAL>();
 builder.Services.AddTransient<ArticlesEFPublicDAL>();
+
+builder.Services.AddDbContext<MyBlogInitiationContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyBlogInitiationContext") ?? throw new InvalidOperationException("Connection string 'MyBlogInitiationContext' not found.")));
 
 var app = builder.Build();
 
@@ -45,6 +51,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
