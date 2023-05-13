@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DbBlogContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDbContext")));
 
 builder.Services.AddTransient<ArticlesPublicDAL>();
+builder.Services.AddTransient<ArticlesEFPublicDAL>();
 
 var app = builder.Build();
 

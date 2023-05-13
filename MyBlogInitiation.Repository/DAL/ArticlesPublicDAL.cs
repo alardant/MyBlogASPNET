@@ -18,7 +18,7 @@ namespace MyBlogInitiation.Repository.DAL
 		{
 			_dbBlogContext = blogContext;
 		}
-		//Retourne un articel en fonction de son id
+		//Retourne un article en fonction de son id
 		public async Task<ArticleModel> GetArticle(int id)
 		{
 			var articleModel = await _dbBlogContext.Articles.FirstOrDefaultAsync(i => i.Id == id && i.Available);

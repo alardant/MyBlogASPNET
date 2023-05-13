@@ -14,30 +14,43 @@ namespace MyBlogInitiation.Controllers
 {
     public class ArticlesEFController : Controller
     {
-        private readonly ArticlesPublicDAL _articlesPublicRepository
-		public ArticlesEFController(ArticlesPublicDAL ArticlesPublicRepository)
+        //créer le DAL dans le projet repo
+        // paramétrer l'injection dans le program.cs (addtranscient)
+        // injecter le dal dans le controlleur
+        // Enlever toutes les occurences à _context en les remplacant par des appels aux repo
+
+        private readonly ArticlesEFPublicDAL _articlesEFPublicDAL;
+        public ArticlesEFController(ArticlesEFPublicDAL articlesEFPublicDAL)
         {
-			_articlesPublicRepository = ArticlesPublicRepository
+            _articlesEFPublicDAL = articlesEFPublicDAL;
         }
 
         // GET: ArticlesEF
         public async Task<IActionResult> Index()
         {
-              return _context.Articles != null ? 
-                          View(await _context.Articles.ToListAsync()) :
-                          Problem("Entity set 'MyBlogInitiationContext.ArticleModel'  is null.");
+            var listArticle = await _articlesEFPublicDAL.GetAllArticles();
+
+			if (listArticle != null)
+            {
+                return View(listArticle);
+
+			} else
+            {
+                return Problem("Entity set 'MyBlogInitiationContext.ArticleModel'  is null.");
+			}
+                            
         }
 
         // GET: ArticlesEF/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Articles == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var articleModel = await _context.Articles
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var articleModel = await _articlesEFPublicDAL.GetArticle(id.Value);
+
             if (articleModel == null)
             {
                 return NotFound();
@@ -61,8 +74,8 @@ namespace MyBlogInitiation.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(articleModel);
-                await _context.SaveChangesAsync();
+                _articlesEFPublicDAL.AddAsync(articleModel);
+                await _articlesEFPublicDAL.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(articleModel);
@@ -71,12 +84,12 @@ namespace MyBlogInitiation.Controllers
         // GET: ArticlesEF/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Articles == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var articleModel = await _context.Articles.FindAsync(id);
+            var articleModel = await _articlesEFPublicDAL.GetArticle(id.Value);
             if (articleModel == null)
             {
                 return NotFound();
@@ -100,12 +113,11 @@ namespace MyBlogInitiation.Controllers
             {
                 try
                 {
-                    _context.Update(articleModel);
-                    await _context.SaveChangesAsync();
+                    _articlesEFPublicDAL.Update(articleModel);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ArticleModelExists(articleModel.Id))
+                    if (!_articlesEFPublicDAL.ArticleModelExists(articleModel.Id))
                     {
                         return NotFound();
                     }
@@ -114,6 +126,7 @@ namespace MyBlogInitiation.Controllers
                         throw;
                     }
                 }
+                await _articlesEFPublicDAL.SaveAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(articleModel);
@@ -122,13 +135,12 @@ namespace MyBlogInitiation.Controllers
         // GET: ArticlesEF/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Articles == null)
+              if (id == null)
             {
                 return NotFound();
             }
 
-            var articleModel = await _context.Articles
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var articleModel = await _articlesEFPublicDAL.GetArticle(id.Value);
             if (articleModel == null)
             {
                 return NotFound();
@@ -142,23 +154,17 @@ namespace MyBlogInitiation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Articles == null)
+            if (_articlesEFPublicDAL == null)
             {
                 return Problem("Entity set 'MyBlogInitiationContext.ArticleModel'  is null.");
             }
-            var articleModel = await _context.Articles.FindAsync(id);
+            var articleModel = await _articlesEFPublicDAL.GetArticle(id);
             if (articleModel != null)
             {
-                _context.Articles.Remove(articleModel);
+                _articlesEFPublicDAL.Delete(articleModel);
             }
-            
-            await _context.SaveChangesAsync();
+            await _articlesEFPublicDAL.SaveAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool ArticleModelExists(int id)
-        {
-          return (_context.Articles?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
