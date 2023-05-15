@@ -8,6 +8,8 @@ using MyBlogInitiation.Data;
 using MyBlogInitiation.Repository.DAL;
 using Microsoft.AspNetCore.Identity;
 using MyBlogInitiation.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using MyBlogInitiation.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,8 @@ builder.Services.AddDefaultIdentity<UserModel>(options => options.SignIn.Require
 
 builder.Services.AddTransient<ArticlesPublicDAL>();
 builder.Services.AddTransient<ArticlesEFPublicDAL>();
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
