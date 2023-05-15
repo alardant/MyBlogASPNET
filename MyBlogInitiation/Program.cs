@@ -9,7 +9,7 @@ using MyBlogInitiation.Repository.DAL;
 using Microsoft.AspNetCore.Identity;
 using MyBlogInitiation.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using MyBlogInitiation.Services;
+using MyBlogInitiation.Repository.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
